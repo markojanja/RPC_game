@@ -34,29 +34,52 @@ function playerChoice() {
 function playRoud(player, computer) {
   let computerPlay = computer;
   let playerPlay = player;
+  let message = "";
   const playerWonMessage = "player won";
   const computerWonMessage = "computer won";
   const tieGame = "It's tie game";
 
   if (player === rock && computer === scissors) {
-    console.log(playerWonMessage);
+    message = playerWonMessage;
+    return message;
   } else if (player === scissors && computer === rock) {
-    console.log(computerWonMessage);
+    message = computerWonMessage;
+    return message;
   } else if (player === scissors && computer === paper) {
-    console.log(playerWonMessage);
+    message = playerWonMessage;
+    return message;
   } else if (player === paper && computer === scissors) {
-    console.log(computerWonMessage);
+    message = computerWonMessage;
+    return message;
   } else if (player === paper && computer === rock) {
-    console.log(playerWonMessage);
+    message = playerWonMessage;
+    return message;
   } else if (player === rock && computer === paper) {
-    console.log(computerWonMessage);
+    message = computerWonMessage;
+    return message;
   } else if (player === computer) {
-    console.log(tieGame);
+    message = tieGame;
+    return message;
   }
-
-  return computerPlay, playerPlay;
 }
 
-playRoud(playerChoice(), computerChoice());
+function game() {
+  let playerScore = 0;
+  let computerScore = 0;
 
-//TODO:code refactoring
+  for (let i = 0; i < 5; i++) {
+    let round = playRoud(playerChoice(), computerChoice());
+    if (round === "player won") {
+      playerScore += 1;
+    } else if (round === "computer won") {
+      computerScore += 1;
+    }
+  }
+  if (playerScore > computerScore) {
+    console.log("WIIIINNNNNN");
+  } else {
+    console.log("Computer is the BOSS");
+  }
+}
+
+game();
