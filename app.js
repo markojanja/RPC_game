@@ -9,10 +9,10 @@ const scissors = "scissors";
 function computerChoice() {
   const choiceList = [rock, paper, paper];
 
-  let i = Math.floor(Math.random() * 3);
-  console.log(choiceList[i]);
+  let choice = Math.floor(Math.random() * choiceList.length);
+  console.log(choiceList[choice]);
 
-  return choiceList[i];
+  return choiceList[choice];
 }
 //player choice
 //returns lowercase string value from the user prompt
@@ -57,7 +57,7 @@ function playRoud(player, computer) {
   } else if (player === rock && computer === paper) {
     message = computerWonMessage;
     return message;
-  } else if (player === computer) {
+  } else{
     message = tieGame;
     return message;
   }
@@ -74,11 +74,16 @@ function game() {
     } else if (round === "computer won") {
       computerScore += 1;
     }
+    console.log(`player ${playerScore} - computer ${computerScore}`)
   }
+  
   if (playerScore > computerScore) {
     console.log("WIIIINNNNNN");
-  } else {
+  } else if(playerScore<computerScore) {
     console.log("Computer is the BOSS");
+  }
+  else{
+    console.log("It's tie game!!");
   }
 }
 
