@@ -7,7 +7,8 @@ const scissors = "scissors";
 // function that handle computer choice
 // returns string value from the list
 function computerChoice() {
-  const choiceList = [rock, paper, paper];
+  const choiceList = [rock, paper, scissors];
+  console.log(choiceList.length)
 
   let choice = Math.floor(Math.random() * choiceList.length);
   console.log(choiceList[choice]);
@@ -16,24 +17,17 @@ function computerChoice() {
 }
 //player choice
 //returns lowercase string value from the user prompt
-function playerChoice() {
-  let choice = prompt("Enter rock, paper, scissors: ").toLowerCase();
+function playerChoice(choice) {
+  let choiceValue = choice;
 
-  //handle wrong user input
-  if (choice !== rock && choice !== paper && choice !== scissors) {
-    alert("Not valid choice");
-    choice = prompt("Enter valid choice").toLowerCase();
-  }
   console.log(choice);
-  return choice.toLowerCase();
+  return choiceValue;
 }
 
 //play round
 //function that handle game logic , and set of rules
 //rock beats scissors , scissors beat paper , paper beats rock
 function playRoud(player, computer) {
-  let computerPlay = computer;
-  let playerPlay = player;
   let message = "";
   const playerWonMessage = "player won";
   const computerWonMessage = "computer won";
@@ -57,34 +51,58 @@ function playRoud(player, computer) {
   } else if (player === rock && computer === paper) {
     message = computerWonMessage;
     return message;
-  } else{
+  } else {
     message = tieGame;
     return message;
   }
 }
+let playerScore = 0;
+let computerScore = 0;
 
-function game() {
-  let playerScore = 0;
-  let computerScore = 0;
-
-  for (let i = 0; i < 5; i++) {
-    let round = playRoud(playerChoice(), computerChoice());
-    if (round === "player won") {
-      playerScore += 1;
-    } else if (round === "computer won") {
-      computerScore += 1;
-    }
-    console.log(`player ${playerScore} - computer ${computerScore}`)
+// check if the player or the computer reached 5 points
+function check_result(){
+  if(playerScore === 5){
+    console.log("player won")
+    playerScore = 0
+    computerScore = 0
   }
-  
-  if (playerScore > computerScore) {
-    console.log("WIIIINNNNNN");
-  } else if(playerScore<computerScore) {
-    console.log("Computer is the BOSS");
+  else if(computerScore === 5){
+    console.log('comp won')
+    playerScore = 0
+    computerScore = 0
   }
   else{
-    console.log("It's tie game!!");
+    console.log("battle in progress")
   }
+ 
 }
 
-game();
+//main function that runs the game
+
+function game() {
+  //selects all btns
+  const btns = document.querySelectorAll(".btn");
+
+  btns.forEach((btn) => {
+    // click event for every btn
+    btn.addEventListener("click", function () {
+        let round = playRoud(
+          playerChoice(this.dataset.value),
+          computerChoice()
+        );   
+
+        if (round === "player won") {
+          playerScore += 1;
+          console.log(`running score ${playerScore} - ${computerScore}`);
+          check_result()
+          return playerScore;
+        } else if (round === "computer won") {
+          computerScore += 1;
+          console.log(`running score ${playerScore} - ${computerScore}`);
+          check_result()
+        }
+    });
+  });
+}
+game()
+
