@@ -3,6 +3,11 @@
 const rock = "rock";
 const paper = "paper";
 const scissors = "scissors";
+const playerScr = document.getElementById('plyr-score')
+const computerScr = document.getElementById('comp-score')
+const cmpChoice = document.getElementById('cmp-choice')
+
+
 // computer choice
 // function that handle computer choice
 // returns string value from the list
@@ -12,7 +17,7 @@ function computerChoice() {
 
   let choice = Math.floor(Math.random() * choiceList.length);
   console.log(choiceList[choice]);
-
+  cmpChoice.innerHTML = choiceList[choice]
   return choiceList[choice];
 }
 //player choice
@@ -21,6 +26,7 @@ function playerChoice(choice) {
   let choiceValue = choice;
 
   console.log(choice);
+
   return choiceValue;
 }
 
@@ -65,11 +71,13 @@ function check_result(){
     console.log("player won")
     playerScore = 0
     computerScore = 0
+
   }
   else if(computerScore === 5){
     console.log('comp won')
     playerScore = 0
     computerScore = 0
+
   }
   else{
     console.log("battle in progress")
@@ -93,11 +101,14 @@ function game() {
 
         if (round === "player won") {
           playerScore += 1;
+          playerScr.innerHTML = playerScore
           console.log(`running score ${playerScore} - ${computerScore}`);
           check_result()
+
           return playerScore;
         } else if (round === "computer won") {
           computerScore += 1;
+          computerScr.innerHTML = computerScore
           console.log(`running score ${playerScore} - ${computerScore}`);
           check_result()
         }
