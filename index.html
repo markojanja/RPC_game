@@ -8,18 +8,22 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
-
+<div class="wrapper">
+    <header>
+        <h1 class="title">Rock Paper Scissors</h1>
+    </header>
     <main>
-        <h1>Rock Paper Scissors</h1>
+        
         <div class="buttons">
-            <button class="btn" data-value="rock">rock</button>
-            <button class="btn" data-value="paper">paper</button>
-            <button class="btn" data-value="scissors">scissors</button>
+            <button class="btn"  data-value="rock">✊</button>
+            <button class="btn"  data-value="paper">🖐️</button>
+            <button class="btn"  data-value="scissors">✌️</button>
         </div>
         <section>
             <h3>Computer chose <span id="cmp-choice">????</span><h3></h3>
         </section>
         <section class="box-score">
+
              <div class="player-score">
                 <h1>Player</h1>
                 <h1 id="plyr-score">0</h1>
@@ -30,7 +34,10 @@
              </div>   
         </section>
     </main>
-
+    <footer>
+        <h5>Copy &copy;2022 MarkoJanja</h5>
+    </footer>
+</div>
 
     <script src="app.js"></script>
 </body>

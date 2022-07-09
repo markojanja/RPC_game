@@ -21,7 +21,7 @@ function computerChoice() {
   return choiceList[choice];
 }
 //player choice
-//returns lowercase string value from the user prompt
+//returns strin value fwhien btn is clicked 
 function playerChoice(choice) {
   let choiceValue = choice;
 
@@ -117,3 +117,8 @@ function game() {
 }
 game()
 
+const box = document.querySelector('.card');
+
+box.addEventListener('click',function () {
+    box.disabled = true;
+  });
