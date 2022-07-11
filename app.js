@@ -1,37 +1,41 @@
 "use strict";
 
+const btns = document.querySelectorAll(".btn");
 const rock = "rock";
 const paper = "paper";
 const scissors = "scissors";
-const playerScr = document.getElementById('plyr-score')
-const computerScr = document.getElementById('comp-score')
-const cmpChoice = document.getElementById('cmp-choice')
-
+const playerScr = document.getElementById("plyr-score");
+const computerScr = document.getElementById("comp-score");
+const cmpChoice = document.getElementById("cmp-choice");
+const modal = document.querySelector('.modal');
+const playAgainBtn = document.querySelector('.btn-primary');
+const modalMsg = document.getElementById('modal_msg');
+const closeBtn = document.querySelector('.btn-close');
 
 // computer choice
 // function that handle computer choice
 // returns string value from the list
 function computerChoice() {
   const choiceList = [rock, paper, scissors];
-  console.log(choiceList.length)
+  // console.log(choiceList.length);
 
   let choice = Math.floor(Math.random() * choiceList.length);
-  console.log(choiceList[choice]);
-  cmpChoice.innerHTML = choiceList[choice]
+  // console.log(choiceList[choice]);
+  cmpChoice.innerHTML = choiceList[choice];
   return choiceList[choice];
 }
 //player choice
-//returns strin value fwhien btn is clicked 
+//returns string value when btn is clicked
 function playerChoice(choice) {
   let choiceValue = choice;
 
-  console.log(choice);
+  // console.log(choice);
 
   return choiceValue;
 }
 
 //play round
-//function that handle game logic , and set of rules
+//function that handle game logic
 //rock beats scissors , scissors beat paper , paper beats rock
 function playRoud(player, computer) {
   let message = "";
@@ -66,59 +70,74 @@ let playerScore = 0;
 let computerScore = 0;
 
 // check if the player or the computer reached 5 points
-function check_result(){
-  if(playerScore === 5){
-    console.log("player won")
-    playerScore = 0
-    computerScore = 0
+function check_result() {
+  if (playerScore === 5) {
+    // console.log("player won");
+    modalMsg.innerHTML = "Player Won";
+    modal.classList.add('show');
+    btns.forEach(btn=>{
+      btn.disabled = true;
+    })
+    playAgain()
 
-  }
-  else if(computerScore === 5){
-    console.log('comp won')
-    playerScore = 0
-    computerScore = 0
+  } else if (computerScore === 5) {
+    console.log("comp won");
+    modalMsg.innerHTML = "Computer Won";
+    modal.classList.add('show');
+    btns.forEach(btn=>{
+      btn.disabled = true;
+    })
+    playAgain()
 
+  } else {
+    
   }
-  else{
-    console.log("battle in progress")
-  }
- 
 }
 
 //main function that runs the game
 
 function game() {
   //selects all btns
-  const btns = document.querySelectorAll(".btn");
-
+ 
+  playAgain()
   btns.forEach((btn) => {
     // click event for every btn
     btn.addEventListener("click", function () {
-        let round = playRoud(
-          playerChoice(this.dataset.value),
-          computerChoice()
-        );   
+      let round = playRoud(playerChoice(this.dataset.value), computerChoice());
 
-        if (round === "player won") {
-          playerScore += 1;
-          playerScr.innerHTML = playerScore
-          console.log(`running score ${playerScore} - ${computerScore}`);
-          check_result()
-
-          return playerScore;
-        } else if (round === "computer won") {
-          computerScore += 1;
-          computerScr.innerHTML = computerScore
-          console.log(`running score ${playerScore} - ${computerScore}`);
-          check_result()
-        }
+      if (round === "player won") {
+        playerScore += 1;
+        playerScr.innerHTML = playerScore;
+        // console.log(`running score ${playerScore} - ${computerScore}`);
+        check_result();
+      } else if (round === "computer won") {
+        computerScore += 1;
+        computerScr.innerHTML = computerScore;
+        // console.log(`running score ${playerScore} - ${computerScore}`);
+        check_result();
+      }
     });
   });
 }
-game()
 
-const box = document.querySelector('.card');
+//function that resets the game
+function playAgain(){
+  playAgainBtn.addEventListener('click', ()=>{
 
-box.addEventListener('click',function () {
-    box.disabled = true;
-  });
+    modal.classList.remove('show');
+    playerScore = 0;
+    computerScore = 0;
+    playerScr.innerHTML = '0';
+    computerScr.innerHTML = '0';
+    btns.forEach(btn=>{
+      btn.disabled = false;
+    })
+  })
+}
+//close modal
+
+closeBtn.addEventListener('click', ()=>{
+  modal.classList.remove('show')
+});
+
+game();

@@ -1,44 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Rock Paper Scissors</title>
     <link rel="stylesheet" href="main.css">
 </head>
+
 <body>
-<div class="wrapper">
+    <div class="modal">
+        <button class="btn-close" type="button"><i class="fa-solid fa-x"></i></button>
+        <h1 id="modal_msg">Who won</h1>
+        <button class="btn-primary">play again</button>
+    </div>
     <header>
         <h1 class="title">Rock Paper Scissors</h1>
     </header>
     <main>
-        
         <div class="buttons">
-            <button class="btn"  data-value="rock">✊</button>
-            <button class="btn"  data-value="paper">🖐️</button>
-            <button class="btn"  data-value="scissors">✌️</button>
+            <button class="btn" data-value="rock">✊</button>
+            <button class="btn" data-value="paper">🖐️</button>
+            <button class="btn" data-value="scissors">✌️</button>
         </div>
         <section>
-            <h3>Computer chose <span id="cmp-choice">????</span><h3></h3>
+            <h3>Computer chose <span id="cmp-choice">????</span>
+                <h3></h3>
         </section>
         <section class="box-score">
-
-             <div class="player-score">
+            <div class="player-score">
                 <h1>Player</h1>
                 <h1 id="plyr-score">0</h1>
-             </div>
-             <div class="computer-score">
+            </div>
+            <div class="computer-score">
                 <h1>Computer</h1>
                 <h1 id="comp-score">0</h1>
-             </div>   
+            </div>
         </section>
     </main>
     <footer>
         <h5>Copy &copy;2022 MarkoJanja</h5>
     </footer>
-</div>
-
     <script src="app.js"></script>
 </body>
+
 </html>
