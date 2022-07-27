@@ -14,28 +14,32 @@
 }
 
 html, body{
+    position: relative;
     font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
     color: #ffffff;
-    background-color: var(--dark-light); 
+    background-color: var(--dark-light);
+    min-height: 100vh;
 }
+
 header{
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 10vh;
+    padding: 20px 0;
     background-color: var(--primary-color);
 }
 main{
     position: relative;
     display: flex;
-    min-height: 80vh;
     width: 100%;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: 100px;
+  
 }
 main h1{
     font-size: 2rem;
@@ -51,7 +55,7 @@ main h1{
 .buttons{
     position: relative;
     display: flex;
-    padding: 100px 0;
+    padding: 50px 0;
     width: 100%;
     align-items: center;
     justify-content: center;
@@ -59,6 +63,7 @@ main h1{
     gap: 20px;
 }
 .btn{
+    position: relative;
     display: inline-block;
     cursor: pointer;
     font-size: 2.5rem;
@@ -90,10 +95,11 @@ main h1{
 
 
 footer{
-    display: flex;
-    flex-direction: column;
+    position: absolute;
+    bottom: 0;
     width: 100%;
-    min-height: 10vh;
+    display: flex;
+    padding: 20px 0;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -158,6 +164,10 @@ footer{
 
 @media screen and (max-width:768px) {
 
+    main{
+        margin-top: 0;
+    }
+
     main h1{
         font-size: 2.5rem;
         margin: 20px;
@@ -183,5 +193,13 @@ footer{
     .title{
         font-size: 2rem;
         padding: 20px;
+    }
+}
+@media screen and (max-height:400px){
+    main{
+        padding-bottom: 50px;
+    }
+    footer{
+        position: relative;
     }
 }
